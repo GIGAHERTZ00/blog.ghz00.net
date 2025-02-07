@@ -33,7 +33,7 @@ export async function getStaticPaths() {
       </tr>
     </thead>
     <tbody>
-      {posts.toReversed().map((post) => 
+      {posts.toSorted((a,b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime()).map((post) => 
         <tr>
           <td class="title"><a href={post.url}>{post.frontmatter.title}</a></td>
           <td>{post.frontmatter.description}</td>
