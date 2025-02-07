@@ -19,11 +19,11 @@ const { frontmatter } = Astro.props;
         </tr>
         <tr>
           <td>Category:</td>
-          <td><a href={`/categories/${frontmatter.category}`}>{frontmatter.category}</a></td>
+          <td class="no-underline"><a href={`/categories/${frontmatter.category}`}>{frontmatter.category}</a></td>
         </tr>
         <tr>
           <td>{frontmatter.tags.length === 1 && frontmatter.tags[0] !== "none" ? "Tag:" : "Tags:"}</td>
-          <td>{frontmatter.tags.length <= 1 || frontmatter.tags.length === 1 && frontmatter.tags[0] === "none" ? <a href="/tags/none/">none</a> : <span>[ {frontmatter.tags.slice(0,-1).map((tag) => <a href={`/tags/${tag}`}>"{tag}"</a><span> , </span>)}{<a href={`/tags/${frontmatter.tags.at(-1)}`}>"{frontmatter.tags.at(-1)}"</a>} ]</span>}</td>
+          <td class="no-underline">{frontmatter.tags.length < 1 || frontmatter.tags.length === 1 && frontmatter.tags[0] === "none" ? <a href="/tags/none/">none</a> : <span>[ {frontmatter.tags.slice(0,-1).map((tag) => <a href={`/tags/${tag}`}>"{tag}"</a><span> , </span>)}{<a href={`/tags/${frontmatter.tags.at(-1)}`}>"{frontmatter.tags.at(-1)}"</a>} ]</span>}</td>
         </tr>
       </tbody>        
     </table>
