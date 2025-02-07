@@ -1,0 +1,19 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const allPosts = await Astro.glob('../posts/*.md');
+const categories = [...new Set(allPosts.map((post) => post.frontmatter.category).flat())];
+---
+
+<Layout pageTitle="/categories/">
+  <div>
+    <h1>Index of /categories/</h1>
+    <p>
+      categories/&ensp;&lt;<br>
+      {categories.slice(0,-1).map((category) => (
+        <a href={`/categories/${category}`}>├{category}/</a><br>
+      ))}
+      <a href={`/categories/${categories.at(-1)}`}>└{categories.at(-1)}</a>
+    </p>
+  </div>
+</Layout>

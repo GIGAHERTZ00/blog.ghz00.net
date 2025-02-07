@@ -1,0 +1,45 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const { category } = Astro.params;
+const { posts    } = Astro.props;
+// console.log(filteredPosts);
+
+export async function getStaticPaths() {
+  const allPosts = await Astro.glob('../posts/*.md');
+  const uniqueCategories = [...new Set(allPosts.map((post) => post.frontmatter.category).flat())];
+  return uniqueCategories.map((category) => {
+    const filteredPosts = allPosts.filter((post) => post.frontmatter.category.includes(category));
+    return {
+      params: { category },
+      props: { posts: filteredPosts },
+    };
+  });
+}
+---
+
+<Layout pageTitle={`/categories/${category}`}>
+  <p>
+    <a href="/categories/">categories/</a><br>
+    └{category}/&ensp;&lt;
+  </p>
+  <h1>Index of /categories/{category}</h1>
+  <table class="postsList">
+    <thead>
+      <tr>
+        <td class="title">Title</td>
+        <td>Description</td>
+        <th class="date">Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {posts.map((post) => 
+        <tr>
+          <td class="title"><a href={post.url}>{post.frontmatter.title}</a></td>
+          <td>{post.frontmatter.description}</td>
+          <th class="date">{new Date(post.frontmatter.date).toLocaleDateString("ja-JP", {timeZone: "Asia/Tokyo", year: "numeric", month: "2-digit", day: "2-digit"}).replaceAll('/', '-')}</th>
+        </tr>
+      )}
+    </tbody>
+  </table>
+</Layout>

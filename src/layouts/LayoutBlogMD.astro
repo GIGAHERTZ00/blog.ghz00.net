@@ -1,0 +1,44 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout pageTitle={frontmatter.title}>
+  <div id=info>
+    <h1 id="postTitle">{frontmatter.title}</h1>
+    <table>
+      <tbody>
+        <tr>
+          <td>Date:</td>
+          <td>{new Date(frontmatter.date).toLocaleDateString("ja-JP", {timeZone: "Asia/Tokyo", year: "numeric", month: "2-digit", day: "2-digit"}).replaceAll('/', '-')+'T'+new Date(frontmatter.date).toLocaleTimeString("ja-JP", {timeZone: "Asia/Tokyo", hour: "2-digit", minute: "2-digit", second: "2-digit"}).replaceAll('/', '-')+"+09:00"}</td>
+        </tr>
+        <tr>
+          <td>Author:</td>
+          <td>{frontmatter.author}</td>
+        </tr>
+        <tr>
+          <td>Category:</td>
+          <td><a href={`/categories/${frontmatter.category}`}>{frontmatter.category}</a></td>
+        </tr>
+        <tr>
+          <td>{frontmatter.tags.length === 1 && frontmatter.tags[0] !== "none" ? "Tag:" : "Tags:"}</td>
+          <td>{frontmatter.tags.length <= 1 || frontmatter.tags.length === 1 && frontmatter.tags[0] === "none" ? <a href="/tags/none/">none</a> : <span>[ {frontmatter.tags.slice(0,-1).map((tag) => <a href={`/tags/${tag}`}>"{tag}"</a><span> , </span>)}{<a href={`/tags/${frontmatter.tags.at(-1)}`}>"{frontmatter.tags.at(-1)}"</a>} ]</span>}</td>
+        </tr>
+      </tbody>        
+    </table>
+  </div>
+  <slot />
+</Layout>
+
+<style>
+  #postTitle {
+/*    font-size: 2.5rem;*/
+  }
+
+  #info {
+    table {
+      border-spacing: 1rem 0rem;
+    }
+  }
+</style>

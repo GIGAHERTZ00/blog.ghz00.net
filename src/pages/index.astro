@@ -1,11 +1,29 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const allPosts = await Astro.glob("../pages/posts/*.md");
+const pageTitle = "ぎがへのブログ";
 ---
 
-<Layout>
-	<Welcome />
+<Layout pageTitle={pageTitle}>
+  <h1>Index of /</h1>
+  <table class="postsList">
+    <thead>
+      <tr>
+        <td class="title">Title</td>
+        <td>Description</td>
+        <th class="date">Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {allPosts.toSorted((a,b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime()).map((post) => 
+        <tr>
+          <td class="title"><a href={post.url}>{post.frontmatter.title}</a></td>
+          <td>{post.frontmatter.description}</td>
+          {/*<th class="date">{new Date(post.frontmatter.date).toLocaleDateString("ja-JP", {timeZone: "Asia/Tokyo", year: "numeric", month: "2-digit", day: "2-digit"}).replaceAll('/', '-')+'T'+new Date(post.frontmatter.date).toLocaleTimeString("ja-JP", {timeZone: "Asia/Tokyo", hour: "2-digit", minute: "2-digit", second: "2-digit"}).replaceAll('/', '-')+"+09:00"}</th>*/}
+          <th class="date">{new Date(post.frontmatter.date).toLocaleDateString("ja-JP", {timeZone: "Asia/Tokyo", year: "numeric", month: "2-digit", day: "2-digit"}).replaceAll('/', '-')}</th>
+        </tr>
+      )}
+    </tbody>
+  </table>
 </Layout>
