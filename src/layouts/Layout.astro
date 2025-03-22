@@ -3,6 +3,7 @@ import Header from "../components/Header.astro"
 import Footer from "../components/Footer.astro"
 
 const {pageTitle} = Astro.props;
+const ogpTitle = pageTitle + " | blog.ghz00.net";
 ---
 
 <!doctype html>
@@ -14,7 +15,7 @@ const {pageTitle} = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle} | blog.ghz00.net</title>
     <meta name="description" content="ぎがへ's ぶろぐ">
-    <meta property="og:title" content="{pageTitle} | blog.ghz00.net">
+    <meta property="og:title" content={ogpTitle}>
     <meta property="og:type" content="blog">
     <meta property="og:url" content="https://blog.ghz00.net/">
     <meta property="og:image" content="https://blog.ghz00.net/favicon.svg">
