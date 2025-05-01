@@ -10,8 +10,12 @@ const { frontmatter } = Astro.props;
     <table>
       <tbody>
         <tr>
-          <td>Date:</td>
-          <td>{new Date(frontmatter.date).toLocaleDateString("ja-JP", {timeZone: "Asia/Tokyo", year: "numeric", month: "2-digit", day: "2-digit"}).replaceAll('/', '-')+'T'+new Date(frontmatter.date).toLocaleTimeString("ja-JP", {timeZone: "Asia/Tokyo", hour: "2-digit", minute: "2-digit", second: "2-digit"}).replaceAll('/', '-')+"+09:00"}</td>
+          <td>CreaatedDate:</td>
+          <td>{new Date(frontmatter.createdDate).toLocaleDateString("ja-JP", {timeZone: "Asia/Tokyo", year: "numeric", month: "2-digit", day: "2-digit"}).replaceAll('/', '-')+'T'+new Date(frontmatter.createdDate).toLocaleTimeString("ja-JP", {timeZone: "Asia/Tokyo", hour: "2-digit", minute: "2-digit", second: "2-digit"}).replaceAll('/', '-')+"+09:00"}</td>
+        </tr>
+        <tr>
+          <td>UpdatedDate:</td>
+          <td>{new Date(frontmatter.updatedDate).toLocaleDateString("ja-JP", {timeZone: "Asia/Tokyo", year: "numeric", month: "2-digit", day: "2-digit"}).replaceAll('/', '-')+'T'+new Date(frontmatter.updatedDate).toLocaleTimeString("ja-JP", {timeZone: "Asia/Tokyo", hour: "2-digit", minute: "2-digit", second: "2-digit"}).replaceAll('/', '-')+"+09:00"}</td>
         </tr>
         <tr>
           <td>Author:</td>
@@ -25,7 +29,7 @@ const { frontmatter } = Astro.props;
           <td>{frontmatter.tags.length === 1 && frontmatter.tags[0] !== "none" ? "Tag:" : "Tags:"}</td>
           <td class="no-underline">{frontmatter.tags.length < 1 || frontmatter.tags.length === 1 && frontmatter.tags[0] === "none" ? <a href="/tags/none/">none</a> : <span>[ {frontmatter.tags.slice(0,-1).map((tag) => <a href={`/tags/${tag}`}>"{tag}"</a><span> , </span>)}{<a href={`/tags/${frontmatter.tags.at(-1)}`}>"{frontmatter.tags.at(-1)}"</a>} ]</span>}</td>
         </tr>
-      </tbody>        
+      </tbody>
     </table>
   </div>
   <slot />
