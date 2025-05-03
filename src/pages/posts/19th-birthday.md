@@ -2,7 +2,7 @@
 layout:       ../../layouts/LayoutBlogMD.astro
 title:        "19回目の誕生日"
 createdDate:  2025-05-02T04:36:50+09:00
-updatedDate:  2025-05-02T04:49:56+09:00
+updatedDate:  2025-05-04T06:58:23+09:00
 description:  "0才の誕生日を0回目とする"
 author:       "GIGAHERTZ00"
 category:     "diary"
@@ -15,6 +15,10 @@ tags:         ["birthday"]
 だからといって特に何かある訳ではない。
 
 そういえば、もうU.C.0096時点のマリーダさんの年齢を越したらしいし、U.C.0079時点のシャア大佐と同い年になったらしい。
+
+## 抱負とか
+
+これ以上𝑵を重ねないようにしたい。
 
 ## 𝑷𝒐𝒍𝒊𝒕𝒊𝒄𝒂𝒍な文句とか
 
