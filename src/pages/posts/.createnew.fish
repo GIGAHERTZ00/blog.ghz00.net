@@ -39,7 +39,6 @@ while not string length -q $line
 end
 set tags (string split ' ' $line)
 set tags2 "["
-echo $tags2
 for i in (seq (count $tags))
   set tags2 (string join '' $tags2 "\"" $tags[$i] "\"")
   if test $i -ne (count $tags)
