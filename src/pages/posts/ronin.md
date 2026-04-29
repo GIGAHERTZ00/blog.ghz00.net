@@ -2,7 +2,7 @@
 layout:       ../../layouts/LayoutBlogMD.astro
 title:        "浪人"
 createdDate:  2026-04-29T21:48:06+09:00
-updatedDate:  2026-04-29T21:48:06+09:00
+updatedDate:  2026-04-30T01:28:48+09:00
 description:  "内緒やで ぶっちゃけダサいと思っとんねん"
 author:       "GIGAHERTZ00"
 category:     "diary"
