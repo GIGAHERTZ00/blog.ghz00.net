@@ -7,7 +7,7 @@ const postsTotal   = posts.length;
 // console.log(filteredPosts);
 
 export async function getStaticPaths() {
-  const allPosts = await Astro.glob('../posts/*.md');
+  const allPosts = Object.values(import.meta.glob("../posts/*.md", { eager: true }));
   const uniqueCategories = [...new Set(allPosts.map((post) => post.frontmatter.category).flat())];
   return uniqueCategories.map((category) => {
     const filteredPosts = allPosts.filter((post) => post.frontmatter.category.includes(category));
