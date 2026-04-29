@@ -33,7 +33,9 @@ const { frontmatter } = Astro.props;
       </tbody>
     </table>
   </div>
-  <slot />
+  <div id=main>
+    <slot />
+  </div>
 </Layout>
 
 <style>
@@ -44,6 +46,18 @@ const { frontmatter } = Astro.props;
   #info {
     table {
       border-spacing: 1rem 0rem;
+    }
+  }
+
+  #main {
+    table,th,td {
+      border: 1px solid #7f7f7f;
+      border-collapse: collapse;
+      padding: 0.5em;
+    }
+
+    thead {
+      background-color: rgba(0, 0, 0, 0.2);
     }
   }
 </style>
